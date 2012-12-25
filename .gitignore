@@ -1,0 +1,27 @@
+# -------------------------------------
+# Operating systems
+# ---------------------------
+# Microsoft Windows
+$RECYCLE.BIN/
+Desktop.ini
+Thumbs.db
+
+# Apple Mac OS X
+.Spotlight-V100
+.Trashes
+.DS_Store
+._*
+
+# Linux
+~*
+
+# -------------------------------------
+# Editors
+# ---------------------------
+# Dreamweaver
+_notes/
+
+# Eclipse
+.settings/
+.buildpath
+.project
