@@ -80,8 +80,12 @@ if [ -a $ENVIRONMENT ]; then
 	echo
 
 	# Run the rsync command, with the default settings.
-	# The command have been wrapped with an if-statement to check if
-	# the command was successful or failed.
+	# The command have been wrapped with an if-statement to check if the
+	# command was successful or failed.
+	#
+	# Files that are not currently within the source folder will be deleted
+	# from the destination folder aswell. This will keep the remote destination
+	# clean from deprecated files, etc.
 	if rsync -av --delete --exclude-from $ENVIRONMENT_EXCLUDE $SOURCE $DESTINATION
 	then
 		echo
