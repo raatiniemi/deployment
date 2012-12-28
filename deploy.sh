@@ -15,12 +15,13 @@ NAME=$1
 ENVIRONMENT="$NAME.properties"
 ENVIRONMENT_EXCLUDE="$NAME.exclude"
 
-## Rsync options.
-DEFAULT_RSYNC_OPTIONS="-av"
+## Rsync options. The --delete-excluded flag will remove files that are
+## excluded in the source from the remote destination.
+DEFAULT_RSYNC_OPTIONS="-av --delete-excluded"
 
 # Check that the user has supplied an environment name.
 if [ -z $1 ]; then
-	echo "You have to supply an deployment environment name."
+	echo "You have to supply a deployment environment name."
 	exit 1
 fi
 
@@ -98,13 +99,9 @@ if [ -a $ENVIRONMENT ]; then
 	echo "To destination: $DESTINATION"
 	echo
 
-	# Run the rsync command, with the default settings.
+	# Run the rsync command.
 	# The command have been wrapped with an if-statement to check if the
 	# command was successful or failed.
-	#
-	# Files that are not currently within the source folder will be deleted
-	# from the destination folder aswell. This will keep the remote destination
-	# clean from deprecated files, etc.
 	if rsync $RSYNC_OPTIONS --exclude-from $ENVIRONMENT_EXCLUDE $SOURCE $DESTINATION
 	then
 		echo
