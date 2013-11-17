@@ -1,27 +1,8 @@
-# -------------------------------------
-# Operating systems
-# ---------------------------
-# Microsoft Windows
-$RECYCLE.BIN/
-Desktop.ini
-Thumbs.db
-
-# Apple Mac OS X
-.Spotlight-V100
-.Trashes
-.DS_Store
-._*
-
-# Linux
-~*
-
-# -------------------------------------
-# Editors
-# ---------------------------
-# Dreamweaver
-_notes/
-
-# Eclipse
-.settings/
-.buildpath
-.project
+# Ignore everything except the project specific files.
+*
+!.gitignore
+!.gitattributes
+deploy.sh
+example.exclude
+example.properties
+README.md
