@@ -2,7 +2,7 @@
 *
 !.gitignore
 !.gitattributes
-deploy.sh
-example.exclude
-example.properties
-README.md
+!deploy.sh
+!example.exclude
+!example.properties
+!README.md
