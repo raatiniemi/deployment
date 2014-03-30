@@ -99,6 +99,13 @@ if [ -a $ENVIRONMENT ]; then
 	echo "To destination: $DESTINATION"
 	echo
 
+	# Run the pre setup script.
+	if [ -n "$DEPLOYMENT_SCRIPT_PRE" ]; then
+		echo "Executing pre script '$DEPLOYMENT_SCRIPT_PRE'."
+		$DEPLOYMENT_SCRIPT_PRE
+		echo
+	fi
+
 	# Run the rsync command.
 	# The command have been wrapped with an if-statement to check if the
 	# command was successful or failed.
@@ -106,10 +113,28 @@ if [ -a $ENVIRONMENT ]; then
 	then
 		echo
 		echo "Deployment have been completed."
+
+		# Run the success post setup/clean up script.
+		if [ -n "$DEPLOYMENT_SCRIPT_POST_SUCCESS" ]; then
+			echo
+			echo "Executing post script '$DEPLOYMENT_SCRIPT_POST_SUCCESS'."
+			$DEPLOYMENT_SCRIPT_POST_SUCCESS
+			echo
+		fi
+
 		exit 0
 	else
 		echo
 		echo "Deployment have failed."
+
+		# Run the failure post setup/clean up script.
+		if [ -n "$DEPLOYMENT_SCRIPT_POST_FAILURE" ]; then
+			echo
+			echo "Executing post script '$DEPLOYMENT_SCRIPT_POST_FAILURE'."
+			$DEPLOYMENT_SCRIPT_POST_FAILURE
+			echo
+		fi
+
 		exit 1
 	fi
 else
